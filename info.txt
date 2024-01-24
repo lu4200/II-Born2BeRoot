@@ -1,0 +1,33 @@
+root = root - Laracine42!
+
+user = lumaret - L*z******2***
+
+encrypted SCSI5 = passwordpartition
+
+--------------------------------secure sudo------------------------------------------
+
+Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" | Limits the paths that can be used by sudo to run commands. This setting is already there and you can leave it as it is.
+
+Defaults requiretty | Requires TTY to use sudo.
+
+Defaults badpass_message="not the good one..." | Displays a custom message when using a wrong password with sudo.
+
+Defaults logfile="/var/log/sudo/sudo.log" | Sets the input logs file.
+
+Defaults log_input | Logs input.
+
+Defaults log_output | Logs output.
+
+Defaults iolog_dir=/var/log/sudo | additional output and input logs.
+
+Defaults passwd_tries=3 | Limits connection attempts using sudo.
+
+
+-----------------------------secure password-----------------------------------------
+module : pwquality
+
+check /etc/login.defs
+
+set MAXLEN / MINLEN/ W/ EXP
+
+chage check
