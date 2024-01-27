@@ -6,7 +6,7 @@
 #    By: lucas <lucas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 01:50:55 by lumaret           #+#    #+#              #
-#    Updated: 2024/01/27 02:36:32 by lucas            ###   ########.fr        #
+#    Updated: 2024/01/27 02:38:29 by lucas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,19 +27,19 @@ uname -a
 
 ############################## PHYSICAL CORES ###########################################
 
-print_info "Vérification du nombre de processeurs physiques et virtuels"
+print_info "Verification du nombre de processeurs physiques et virtuels"
 num_processors=$(nproc --all)
 
 echo "Nombre de processeurs physiques et virtuels : $num_processors"
 
 ############################## RAM + PERCENT ############################################
 
-print_info "Mémoire vive disponible et taux d'utilisation:"
+print_info "Memoire vive disponible et taux d'utilisation:"
 free -h
 
 ############################## MEMORY + PERCENT #########################################
 
-print_info "Mémoire disponible et taux d'utilisation:"
+print_info "Memoire disponible et taux d'utilisation:"
 df -h / | awk 'NR==2{print $4, $5}'
 
 ############################## PROCESS USING % (Task Handler) ###########################
@@ -49,7 +49,7 @@ top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100
 
 ############################## HOUR + DATE LAST REBOOT ##################################
 
-print_info "Date et heure du dernier redémarrage:"
+print_info "Date et heure du dernier redemarrage:"
 who -b
 
 ############################## LVM ON ? #################################################
@@ -58,9 +58,9 @@ print_info "Verification de l'etat de LVM"
 lvm_module=$(lsmod | grep "^lvm ")
 
 if [ -n "$lvm_module" ]; then
-    echo "LVM est actif sur ce système."
+    echo "LVM est actif sur ce systeme."
 else
-    echo "LVM n'est pas actif sur ce système."
+    echo "LVM n'est pas actif sur ce systeme."
 fi
 
 ############################## NB TCP ETABLISHED ########################################
@@ -92,7 +92,7 @@ print_info "Adresses IPv4 et adresses MAC des interfaces réseau:"
 ip -o addr show | awk '$3 != "lo" {print $2, $4}'
 
 ############################## NB SUDO COMMANDS USED ####################################
-print_info "Nombre de commandes exécutées avec sudo:"
+print_info "Nombre de commandes executees avec sudo:"
 grep sudo /var/log/sudo/sudo.log | grep COMMAND | wc -l
 
 exit
