@@ -6,7 +6,7 @@
 #    By: lucas <lucas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 01:50:55 by lumaret           #+#    #+#              #
-#    Updated: 2024/01/27 02:38:29 by lucas            ###   ########.fr        #
+#    Updated: 2024/01/27 15:37:22 by lucas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ if [ -n "$lvm_module" ]; then
 else
     echo "LVM n'est pas actif sur ce systeme."
 fi
+#if [ $(lsblk | grep lvm | wc -l) -eq 0 ]; then echo Inactive; else echo Active; fi)#####
 
 ############################## NB TCP ETABLISHED ########################################
 
@@ -89,7 +90,7 @@ fi
 ############################## IPV 4 + MAC ADRESSES #####################################
 
 print_info "Adresses IPv4 et adresses MAC des interfaces réseau:"
-ip -o addr show | awk '$3 != "lo" {print $2, $4}'
+hostname -I | awk '{print $1}'
 
 ############################## NB SUDO COMMANDS USED ####################################
 print_info "Nombre de commandes executees avec sudo:"
