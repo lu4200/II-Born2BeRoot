@@ -6,12 +6,10 @@
 #    By: lucas <lucas@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 01:50:55 by lumaret           #+#    #+#              #
-#    Updated: 2024/01/27 15:37:22 by lucas            ###   ########.fr        #
+#    Updated: 2024/01/29 14:38:26 by lucas            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-#!/bin/bash
 
 #!/bin/bash
 
@@ -36,6 +34,8 @@ echo "Nombre de processeurs physiques et virtuels : $num_processors"
 
 print_info "Memoire vive disponible et taux d'utilisation:"
 free -h
+#cat /proc/meminfo
+
 
 ############################## MEMORY + PERCENT #########################################
 
@@ -46,6 +46,11 @@ df -h / | awk 'NR==2{print $4, $5}'
 
 print_info "Taux d'utilisation des processeurs:"
 top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}'
+#cpu_usage=$(pgrep -u $(whoami) | xargs pmap -X | awk '/total/ {print $3}')
+#echo "Taux d'utilisation des processeurs : $cpu_usage"
+
+
+
 
 ############################## HOUR + DATE LAST REBOOT ##################################
 
@@ -90,7 +95,9 @@ fi
 ############################## IPV 4 + MAC ADRESSES #####################################
 
 print_info "Adresses IPv4 et adresses MAC des interfaces réseau:"
-hostname -I | awk '{print $1}'
+#hostname -I | awk '{print $1}'
+# Adresses IPv4 et adresses MAC des interfaces réseau
+ifconfig -a | grep -E "inet|ether"
 
 ############################## NB SUDO COMMANDS USED ####################################
 print_info "Nombre de commandes executees avec sudo:"
