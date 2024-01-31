@@ -2,7 +2,7 @@ root = root - Laracine42!
 
 user = lumaret - L*z******2***
 
-encrypted SCSI5 = passwordpartition
+encrypted SCSI5 = 1234
 
 --------------------------------secure sudo------------------------------------------
 
